@@ -1,6 +1,12 @@
 #-*- coding: utf-8 -*-
 
-import RPi.GPIO as GPIO
+import sys
+
+try:
+    import RPi.GPIO as GPIO
+except ImportError as ie:
+    print("Problema ao importar modulo {0}").format(ie)
+    sys.exit()
 
 
 __author__ = "Cleiton Bueno (cleitonrbueno@gmail.com)"
