@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
 
 import sys
+import time
+
 
 try:
     import RPi.GPIO as GPIO
@@ -46,9 +48,6 @@ class keypad():
     #    COLUMN = [4,17,22]
 
 
-    valor_linha = -1
-    valor_coluna = -1
-
 
     def __init__(self):
 
@@ -72,14 +71,18 @@ class keypad():
         GPIO.add_event_detect(13, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
         GPIO.add_event_detect(15, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
 
+        self.valor_linha = -1
+        self.valor_coluna = -1
+
 
     def getKey(self):
+        
+        self.valor_linha = -1
+        self.valor_coluna = -1
 
         while self.valor_coluna == -1 and self.valor_linha == -1:
             pass
 
-        #self.exit()
-        
         # Retorna o valor da tecla pressionada baseada na linhaxcoluna
         return self.KEYPAD[self.valor_linha][self.valor_coluna]
 
@@ -96,10 +99,10 @@ class keypad():
                 self.valor_coluna = i
                 break
         
-        self.restaura_gpio_row()
+        self.restaura_gpio()
 
 
-    def restaura_gpio_row(self):
+    def restaura_gpio(self):
         for i in range(len(self.COLUMN)):
             GPIO.setup(self.COLUMN[i], GPIO.OUT)
             GPIO.output(self.COLUMN[i], GPIO.LOW)
@@ -135,12 +138,12 @@ if __name__ == '__main__':
         print_msg("Digite a senha de controle de acesso") 
 
         while tam_senha < 5:
-            """
             senha_acesso += str(tecla_pressionada.getKey())
             tam_senha += 1
-            """
-        print_msg("Senha digitada")
-        print senha_acesso
+            
+            print "\rFaltam %d caracteres" % (5-tam_senha),
+
+        print "Senha: %d" % (senha_acesso)
 
 
     except KeyboardInterrupt:
