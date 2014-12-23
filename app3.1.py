@@ -23,7 +23,7 @@ __version__ = 1.0
 def print_msg(msg):
     tam = len(msg)+4
     
-    print 
+    print "\n" 
     print "#"*tam
     print "# %s #" % (msg)
     print "#"*tam
@@ -142,8 +142,9 @@ if __name__ == '__main__':
             tam_senha += 1
             
             print "\rFaltam %d caracteres" % (5-tam_senha),
+            sys.stdout.flush()
 
-        print "Senha: %d" % (senha_acesso)
+        print_msg("Senha: %s" % (senha_acesso))
 
 
     except KeyboardInterrupt:
