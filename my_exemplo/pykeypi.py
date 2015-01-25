@@ -56,8 +56,7 @@ class keypad():
     __row = [7,11,13,15]
     __column = [12,16,18,22]
 
-    #    ROW = [18,23,24,25]
-    #    COLUMN = [4,17,22]
+    __last_key = None
 
 
 
@@ -97,7 +96,7 @@ class keypad():
             sys.exit()
 
 
-    def getKey(self):
+    def get_key(self):
         
         self.valor_linha = -1
         self.valor_coluna = -1
@@ -105,8 +104,14 @@ class keypad():
         while self.valor_coluna == -1 and self.valor_linha == -1:
             pass
 
+        self.__last_key = self.__KEYPAD[self.valor_linha][self.valor_coluna]
+        
         # Retorna o valor da tecla pressionada baseada na linhaxcoluna
         return self.__KEYPAD[self.valor_linha][self.valor_coluna]
+
+
+    def last_key(self): 
+        return self.__last_key
 
 
     def trataPino(self,pino):
