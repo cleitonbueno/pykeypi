@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 #-*- coding: utf-8 -*-
 
 import sys
@@ -39,7 +40,7 @@ def exit():
 def info():
     print "Revisão Raspberry PI %d" % (GPIO.RPI_REVISION)
     print "Versão RPi.GPIO %s" % (GPIO.VERSION)
-    print "Versao %s" % (__version__)
+    print "Versão %s" % (__version__)
 
 
 class keypad():
