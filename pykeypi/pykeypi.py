@@ -80,10 +80,10 @@ class keypad():
 
 
         # Configurando as interrupcoes que iram ocorrer em algum dos pinos de linha
-        GPIO.add_event_detect(7, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
-        GPIO.add_event_detect(11, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
-        GPIO.add_event_detect(13, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
-        GPIO.add_event_detect(15, GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
+        GPIO.add_event_detect(__row[0], GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
+        GPIO.add_event_detect(__row[1], GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
+        GPIO.add_event_detect(__row[2], GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
+        GPIO.add_event_detect(__row[3], GPIO.FALLING, callback=self.trataPino, bouncetime=300)    
 
         self.valor_linha = -1
         self.valor_coluna = -1
